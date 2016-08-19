@@ -188,7 +188,7 @@ It could be! It's more likely for very widespread libraries that your user's bro
 
 ## Challenges
 
-* <a href="https://github.com/sf-wdi-27-28/asset_pipeline_poem">Asset Pipeline Poem</a>
+* <a href="https://github.com/sf-wdi-30/asset_pipeline_poem">Asset Pipeline Poem</a>
 
 ## Resources
 
