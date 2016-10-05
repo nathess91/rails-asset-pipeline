@@ -164,9 +164,15 @@ Take a look at the instructions for [Precompiling Assets](precompile_assets.md) 
 
 * See [exercises](exercises.md)
 
+## More details 
+
+* See [Working with JS in Rails](working-with-js.md) for strategies on scoping your JS.
+* See [Additional Reading](additional-reading.md) for a discussion of view helpers, assets and **disabling turbolinks**.
+
 ## Resources
 
 * [Asset Pipeline Additional Reading](./additional-reading.md)
 * <a href="http://guides.rubyonrails.org/asset_pipeline.html">Rails Guides: Asset Pipeline</a>
 * <a href="https://github.com/rails/sprockets#sprockets-directives">Sprockets Directives</a>
 * List of [view helpers for asset tags](http://api.rubyonrails.org/classes/ActionView/Helpers/AssetTagHelper.html).
+* [Caching in Rails](http://guides.rubyonrails.org/caching_with_rails.html)

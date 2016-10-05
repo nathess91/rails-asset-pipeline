@@ -2,7 +2,7 @@
 
 ##### Javascript
 
-A new Rails 4 application includes a default `app/assets/javascripts/application.js` file containing the following lines:
+A new Rails 4 or 5 application includes a default `app/assets/javascripts/application.js` file containing the following lines:
 
 ```javascript
 // app/assets/javascripts/application.js
