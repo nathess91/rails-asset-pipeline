@@ -30,14 +30,18 @@
   <title>Load all the things!</title>
 </head>
 <body>
-  <script type="text/javascript" src="vendor/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="vendor/jquery-3.1.1.min.js"></script>
   <script type="text/javascript" src="vendor/handlebars-v4.0.5.js"></script>
-  <script type="text/javascript" src="application.js"></script>
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
 ```
-
 That's three different requests to the server, for three different files. And that's just for JavaScript! Ouch! There's got to be a better way!
+
+In the chrome network tab you see something like: 
+![chrome network tab](assets/images/chrome_network_tab.png "chrome network tab")
+
+See how that time adds up?
 
 How Rails requires files (using the asset pipeline):
 
@@ -60,6 +64,14 @@ How Rails requires files (using the asset pipeline):
 
 That's just two files! (Note that by default, Rails puts `<%= javascript_include_tag :application %>` in the HTML `<head></head>` tag, but you can move it to the bottom of the `<body></body>` to make sure it doesn't block the loading of your HTML).
 
+##### How does rails do this?  The asset pipeline:
+
+* concatentates files together
+* minifies them
+* compresses them 
+
+> Note: There are similar tools for JS backends as well, but they usually require more setup than Rails does.
+
 ### The Manifest
 
 With the Asset Pipeline, instead of manually adding `<script>` or CSS `<link>` tags, you're going to take advantage of `app/assets/javascripts/application.js`. Inside this file, there's a weird looking series of comments called a "manifest":
@@ -79,61 +91,16 @@ It will look for the name of the file (e.g. `jquery`) in the following directori
 2. `lib/assets/` - custom libraries not specific to this app
 3. `vendor/assets/` - third-party libraries
 
-### Precompiling Assets
+#### Concerns
 
-#### Rails Environments
+**All** of your JS is active on **EVERY PAGE**.  So is your CSS.  When writing JS for a page you need to think about whether it will affect other pages on the site.
 
-You may have noticed that when you create a Rails application it has three databases, `development`, `test`, and `production`. You may have also noticed the Gemfile allows `development`, `test`, and `production` as "groups" your gems can belong to.  Rails sets up three different environments for you with options to configure them differently. So far we've been working on our applications in *development*.
 
-**The asset pipeline is designed for *production* applications.** That's when we care about *speed*!
-
-#### How to Precompile
-
-To turn your *many* JavaScript and CSS files into *one* JavaScript file and *one* CSS file in development, you can "precompile" your assets.  We will almost never need to precompile assets during development, but try it today to see what it does.
-
-To set up your app to allow precompiling assets in development, the following three lines need to be inside `config/environments/development.rb`:
-
-```ruby
-config.assets.debug = false
-config.assets.compile = false
-config.assets.digest = true
-```
-
-Precompiled assets live in `public/assets/`. In a new Rails app, that's just an empty folder!
-
-You can run the following command to precompile your assets in development:
-
-```zsh
-➜  rake assets:precompile
-```
-
-Now look inside `public/assets/`, and you'll see *compressed* and *fingerprinted* versions of your assets, compiled into a single file. Restart your server to start using your precompiled assets. Note that when you're precompiling in development, you must `rake assets:precompile` and restart your server anytime you make a change in your JavaScript or CSS files.
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link href="/assets/application-4dd5b109ee3439da54f5bdfd78a80473.css" rel="stylesheet" />
-  <title>Precompiled Assets!</title>
-</head>
-<body>
-  <script src="/assets/application-908e25f4bf641868d8683022a5b62f54.js"></script>
-</body>
-</html>
-```
-
-To destroy your precompiled assets in development, simply run:
-
-```zsh
-➜  rake assets:clobber
-```
-
-Note you will typically only precompile your assets in development for debugging purposes. You'll set up your app to automatically precompile assets when deploying to production (we'll look at this when push to Heroku with Rails).
-
-### Caching
+## Caching
 
 A web application can be configured to "cache" common JavaScript and CSS files in the client's browser.
+
+![cached file](assets/images/headers_cache.png "cached file")
 
 Cached files don't need to be requested *on every page load*. They're already there, ready to go, meaning **less wait time** and **faster page loads**.
 
@@ -186,9 +153,14 @@ But is that faster than just sending one JavaScript file from your own server?
 
 It could be! It's more likely for very widespread libraries that your user's browser might have cached already. You'll have to make a decision about whether you want to host third-party libraries (like jQuery) on your server, or if you want to use a public CDN.
 
+## Precompiling Assets
+
+Take a look at the instructions for [Precompiling Assets](precompile_assets.md) for a way to try out the full power of the asset pipeline in your development environment.
+
+
 ## Challenges
 
-* <a href="https://github.com/sf-wdi-30/asset_pipeline_poem">Asset Pipeline Poem</a>
+* See exercises
 
 ## Resources
 
