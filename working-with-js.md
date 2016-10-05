@@ -237,5 +237,9 @@ $(document).on('page:change', function...
 
 Anywhere and _most_ things will work as expected.  
 
+##### Exercises
+
+* [https://github.com/sf-wdi-31/js-in-rails](https://github.com/sf-wdi-31/js-in-rails)
+
 ##### turbolinks events
 > from https://github.com/turbolinks/turbolinks
