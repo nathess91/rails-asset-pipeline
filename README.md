@@ -72,7 +72,7 @@ That's just two files! (Note that by default, Rails puts `<%= javascript_include
 
 > Note: There are similar tools for JS backends as well, but they usually require more setup than Rails does.
 
-### The Manifest
+### Concatenation and The Manifest
 
 With the Asset Pipeline, instead of manually adding `<script>` or CSS `<link>` tags, you're going to take advantage of `app/assets/javascripts/application.js`. Inside this file, there's a weird looking series of comments called a "manifest":
 
@@ -83,7 +83,7 @@ With the Asset Pipeline, instead of manually adding `<script>` or CSS `<link>` t
 //= require_tree .
 ```
 
-Actually, **these aren't comments!** This manifest file lists a series of instructions saying *which files* need to be loaded in your HTML, and *in what order*.  With these instructions, sprockets loads the files specified, processes them if necessary, concatenates them into one single file, and then compresses them (if `Rails.application.config.assets.compress` is `true`).
+Actually, **these aren't comments!** This manifest file lists a series of instructions saying *which files* need to be loaded in your HTML, and *in what order*.  With these instructions, sprockets loads the files specified, processes them if necessary, **concatenates** them into one single file, and then compresses them (if `Rails.application.config.assets.compress` is `true`).
 
 It will look for the name of the file (e.g. `jquery`) in the following directories:
 
@@ -155,12 +155,14 @@ It could be! It's more likely for very widespread libraries that your user's bro
 
 ## Precompiling Assets
 
+In the Rails development environment many of the above techniques are **not enabled**.  We can try them out though!
+
 Take a look at the instructions for [Precompiling Assets](precompile_assets.md) for a way to try out the full power of the asset pipeline in your development environment.
 
 
 ## Challenges
 
-* See exercises
+* See [exercises](exercises.md)
 
 ## Resources
 
