@@ -25,4 +25,4 @@ Start with the [asset pipeline poem lab](https://github.com/sf-wdi-31/asset_pipe
 
 1. Use jQuery to add a click event handler to the title of the poem.  Start by logging a sanity check message in your console. Test this.
 
-1. Update the click event handler to change the image displayed on your index page.  Use the `asset_path` helper to access the correct path for the asset from inside your JavaScript code (see [this reference in the additional reading](https://github.com/SF-WDI-LABS/shared_modules/blob/master/04-ruby-rails/asset-pipeline/27/additional-reading.md#erb-and-asset-path-helpers)).
+1. Update the click event handler to change the image displayed on your index page.  Use the `asset_path` helper to access the correct path for the asset from inside your JavaScript code (see [the asset path reference in the additional reading](https://github.com/sf-wdi-31/rails-asset-pipeline/blob/master/additional-reading.md)).
