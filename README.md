@@ -39,6 +39,7 @@
 That's three different requests to the server, for three different files. And that's just for JavaScript! Ouch! There's got to be a better way!
 
 In the chrome network tab you see something like: 
+
 ![chrome network tab](assets/images/chrome_network_tab.png "chrome network tab")
 
 See how that time adds up?

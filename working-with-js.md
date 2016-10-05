@@ -213,4 +213,29 @@ $(document).on("ajax:success", '.new-user', function(e, data) {
  
 _____ 
 
+### Turbolinks
 
+Turbolinks will make it so that your `$(document).ready` is only called on the first page the user visits.  When they click a link and view a new page, `$(document).ready` is not triggered again.
+
+As you've seen we can simply [disable turbolinks](http://blog.steveklabnik.com/posts/2013-06-25-removing-turbolinks-from-rails-4).  Later on we'll see how we can work _with turbolinks_.
+
+##### Working with turbolinks
+
+With turbolinks we have a few considerations to keep in mind.
+
+* Since the JavaScript isn't reloaded each page and keeps running for much longer we have to be more careful about using global variables, leaking memory and just generally being considerate.  The JS processes will stay running for a much longer time.
+* document-ready only happens on the first page.  Instead of `$(document).on('ready'` we can use `$(document).on('page:load'`.  
+
+
+Most of the time you can safely just switch to using 
+
+```js
+$(document).on('page:load', function...
+// or 
+$(document).on('page:change', function...
+```
+
+Anywhere and _most_ things will work as expected.  
+
+##### turbolinks events
+> from https://github.com/turbolinks/turbolinks
